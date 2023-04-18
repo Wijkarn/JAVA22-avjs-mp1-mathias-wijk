@@ -18,7 +18,7 @@ export function game() {
         const scissors = document.querySelector("#playerScissors");
         let playerChoice;
 
-        //checks what the player chose
+        // checks what the player chose
         if (event.target.id == "playerRock") {
             playerChoice = "Rock";
             rock.style.border = theChosenOne;
@@ -53,11 +53,10 @@ export function game() {
             playerWins = 0;
             displayLocalCurrentScore();
         }
-        console.log(playerWins);
     })
 
     // Displays current score
-    function displayLocalCurrentScore(){
+    function displayLocalCurrentScore() {
         const h1 = document.querySelector(".playerName");
         h1.innerText = `${playerName} Wins: ${playerWins}`;
     }
@@ -99,7 +98,7 @@ export function game() {
 
         let math = Math.floor(Math.random() * 3);
 
-        //changes from numbers to a word and the border of computer area so show what the computer chose
+        // changes from numbers to a word and the border of computer area so show what the computer chose
         if (math == 0) {
             rps = "Rock";
             pcChoiceClass[0].style.border = theChosenOne;
@@ -146,12 +145,8 @@ export function game() {
 
         const response = await fetch(url);
         const data = await response.json();
-        // console.log(data);
-        // return data;
 
-        // console.log(newArr)
         addHighscore(data);
-        // return sortedScore;
     }
 
     function putToFirebase() {
@@ -166,16 +161,15 @@ export function game() {
                 console.log("Old player")
                 put();
             }
-            else if(name == playerName && score >= playerWins) newPlayer = false;
-            // break;
+            else if (name == playerName && score >= playerWins) newPlayer = false;
         }
-        if(newPlayer && playerWins > highScoreArray[0].score){
+        if (newPlayer && playerWins > highScoreArray[0].score) {
             highScoreArray[0].score = playerWins;
             highScoreArray[0].name = playerName;
             console.log("New player");
             put();
         }
-        
+
     }
 
     async function put() {
@@ -193,15 +187,15 @@ export function game() {
 
         const response = await fetch(url, options);
         const data = await response.json();
-        // console.log(data);
         addHighscore(data);
     }
 
     function addHighscore(arr) {
         highScoreArray = _.sortBy(arr, "score");
-        console.log(highScoreArray);
+
         const ol = document.querySelector("ol");
         ol.innerHTML = null;
+
         for (let i = 0; i < highScoreArray.length; i++) {
             const li = document.createElement("li");
             ol.prepend(li);

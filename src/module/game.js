@@ -6,7 +6,7 @@ export function game() {
     const startButton = document.querySelector("#startButton");
     let playerName;
     const theChosenOne = "red solid 2px";
-    const notTheChosenOne = "black solid 2px";
+    const notTheChosenOne = null;
     let playerWins = 0;
     let highScoreArray;
 
@@ -160,12 +160,13 @@ export function game() {
         for (let i = 0; i < highScoreArray.length; i++) {
             let name = highScoreArray[i].name;
             let score = highScoreArray[i].score;
-            if (name == playerName && score <= playerWins) {
+            if (name == playerName && score < playerWins) {
                 highScoreArray[i].score = playerWins;
                 newPlayer = false;
                 console.log("Old player")
                 put();
             }
+            else if(name == playerName && score >= playerWins) newPlayer = false;
             // break;
         }
         if(newPlayer && playerWins > highScoreArray[0].score){
@@ -195,9 +196,6 @@ export function game() {
         // console.log(data);
         addHighscore(data);
     }
-
-    // document.querySelector("#put").addEventListener("click", putToFirebase);
-
 
     function addHighscore(arr) {
         highScoreArray = _.sortBy(arr, "score");

@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <button id="get">GET</button>
     <button id="put">PUT</button>
 
     <div class="columnCenter">
@@ -22,6 +21,7 @@
             <input type="text" placeholder="Your name" required>
             <button type="submit" id="startButton">Play!</button>
         </form>
+
         <div class="rowCenter" id="gameArea">
             <div class="columnCenter" id="player">
                 <h1 class="playerName">Player</h1>
@@ -40,11 +40,12 @@
                     </div>
                 </div>
             </div>
+
             <div id="score">
-                <h1>Score</h1>
-                <p id="gameScore"></p>
-                <p>First to 3</p>
+                <h1>Highscore List</h1>
+                <ol></ol>
             </div>
+
             <div class="columnCenter" id="pc">
                 <h1>Computer</h1>
                 <div class="rowCenter" id="pcArea">
@@ -62,6 +63,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="columnCenter" id="info">
             <h2>How to play</h2>

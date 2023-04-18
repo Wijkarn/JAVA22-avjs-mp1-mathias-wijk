@@ -11,9 +11,9 @@ export class fireBase {
         const url = "https://rockpaperscissors-50a62-default-rtdb.europe-west1.firebasedatabase.app/highScore.json";
 
         const response = await fetch(url);
-        const data = await response.json();
+        this.highScoreArray = await response.json();
 
-        return data;
+        return this.highScoreArray;
     }
 
     // Update database
@@ -24,7 +24,7 @@ export class fireBase {
 
         const options = {
             method: "PUT",
-            body: JSON.stringify(highScoreArray),
+            body: JSON.stringify(this.highScoreArray),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }

@@ -26,6 +26,7 @@ let playerName;
 const theChosenOne = "red solid 2px";
 const notTheChosenOne = null;
 let playerWins = 0;
+let highScoreArray;
 
 const firebase = new fireBase();
 firebase.getFirebase().then(response => addHighscore(response));

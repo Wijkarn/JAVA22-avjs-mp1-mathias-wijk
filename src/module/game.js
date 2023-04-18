@@ -49,7 +49,7 @@ export function game() {
         }
         // Round Player Lose
         else {
-            putToFirebase();
+            checkIfNewPlayer();
             playerWins = 0;
             displayLocalCurrentScore();
         }
@@ -149,7 +149,7 @@ export function game() {
         addHighscore(data);
     }
 
-    function putToFirebase() {
+    function checkIfNewPlayer() {
         // const arr = [{ name: "Wijk", score: 10 }, { name: "Max", score: 3 }, { name: "Markus", score: 5 }, { name: "Deez", score: 6 }, { name: "Nutz", score: 9 }];
         let newPlayer = true;
         for (let i = 0; i < highScoreArray.length; i++) {
@@ -158,24 +158,20 @@ export function game() {
             if (name == playerName && score < playerWins) {
                 highScoreArray[i].score = playerWins;
                 newPlayer = false;
-                console.log("Old player")
-                put();
+                putToFireBase();
             }
             else if (name == playerName && score >= playerWins) newPlayer = false;
         }
         if (newPlayer && playerWins > highScoreArray[0].score) {
             highScoreArray[0].score = playerWins;
             highScoreArray[0].name = playerName;
-            console.log("New player");
-            put();
+            putToFireBase();
         }
 
     }
 
-    async function put() {
+    async function putToFireBase() {
         const url = "https://rockpaperscissors-50a62-default-rtdb.europe-west1.firebasedatabase.app/highScore.json";
-
-        console.log(highScoreArray);
 
         const options = {
             method: "PUT",
@@ -190,6 +186,7 @@ export function game() {
         addHighscore(data);
     }
 
+    // Adds highscore on page
     function addHighscore(arr) {
         highScoreArray = _.sortBy(arr, "score");
 

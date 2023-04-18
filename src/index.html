@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miniprojekt 1 AvJs</title>
+    <link rel="icon" type="image/x-icon" href=" ">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module" src="./js/script.js"></script>
+</head>
+
+<body>
+
+    <div class="columnCenter">
+
+        <h1>Rock Paper Scissors</h1>
+        <form class="columnCenter">
+            <h2>Enter your name and press the "Play!" button to start the game!</h2>
+            <input type="text" placeholder="Your name" required>
+            <button type="submit" id="startButton">Play!</button>
+        </form>
+
+        <div class="rowCenter" id="gameArea">
+            <div class="columnCenter" id="player">
+                <h1 class="playerName">Player</h1>
+                <div class="rowCenter" id="playerArea">
+                    <div id="playerRock" class="columnCenter">
+                        <h2>Rock</h2>
+                        <img alt="Rock" class="rock">
+                    </div>
+                    <div id="playerPaper" class="columnCenter">
+                        <h2>Paper</h2>
+                        <img alt="Paper" class="paper">
+                    </div>
+                    <div id="playerScissors" class="columnCenter">
+                        <h2>Scissors</h2>
+                        <img alt="Scissors" class="scissors">
+                    </div>
+                </div>
+            </div>
+
+            <div id="score">
+                <h1>Highscore List</h1>
+                <ol></ol>
+            </div>
+
+            <div class="columnCenter" id="pc">
+                <h1>Computer</h1>
+                <div class="rowCenter" id="pcArea">
+                    <div class="columnCenter pcChoice">
+                        <h2>Rock</h2>
+                        <img alt="Rock" class="rock">
+                    </div>
+                    <div class="columnCenter pcChoice">
+                        <h2>Paper</h2>
+                        <img alt="Paper" class="paper">
+                    </div>
+                    <div class="columnCenter pcChoice">
+                        <h2>Scissors</h2>
+                        <img alt="Scissors" class="scissors">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="columnCenter" id="info">
+            <h2>How to play</h2>
+            <p>Choose either "Rock", "Paper" or "Scissors" and then click on your choice in the left panel.</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

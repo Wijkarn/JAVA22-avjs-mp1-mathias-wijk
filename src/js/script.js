@@ -63,15 +63,17 @@ playerArea.addEventListener("click", event => {
 
     // Round Tie
     if (playerChoice == pcChoice) {
-
+        displayRoundWinner("Tie (Fighter)")
     }
     // Round Player Win
     else if ((playerChoice == "Rock" && pcChoice == "Scissors") || (playerChoice == "Scissors" && pcChoice == "Paper") || (playerChoice == "Paper" && pcChoice == "Rock")) {
         playerWins++;
+        displayRoundWinner(playerName);
         displayLocalCurrentScore();
     }
     // Round Player Lose
     else {
+        displayRoundWinner("Computer");
         checkIfNewPlayer();
         playerWins = 0;
         displayLocalCurrentScore();
@@ -146,6 +148,11 @@ function pcChoiceFunc() {
     return rps;
 }
 
+function displayRoundWinner(winner){
+    const p = document.querySelector("#roundWinner");
+    p.innerText = winner;
+}
+
 // Adds highscore on page
 function addHighscore(arr) {
     highScoreArray = _.sortBy(arr, "score");
@@ -168,6 +175,7 @@ function checkIfNewPlayer() {
         let name = highScoreArray[i].name;
         let score = highScoreArray[i].score;
 
+        // Old player
         if (name == playerName && score < playerWins) {
             highScoreArray[i].score = playerWins;
             newPlayer = false;

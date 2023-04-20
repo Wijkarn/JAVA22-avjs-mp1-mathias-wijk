@@ -90,3 +90,7 @@ input,
 button {
     margin: 5px;
 }
+
+ol{
+    margin: 0;
+}

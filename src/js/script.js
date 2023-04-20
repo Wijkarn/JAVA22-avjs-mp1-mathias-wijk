@@ -164,8 +164,9 @@ function checkIfNewPlayer() {
 
         if (name == playerName && score < playerWins) {
             highScoreArray[i].score = playerWins;
-            newPlayer = false;
-            firebase.putToFireBase().then(response => addHighscore(response));
+            newPlayer = false;           
+            firebase.putToFireBase(highScoreArray).then(response => addHighscore(response));
+            break;
         }
         else if (name == playerName && score >= playerWins) newPlayer = false;
     }
@@ -174,6 +175,7 @@ function checkIfNewPlayer() {
     if (newPlayer && playerWins > highScoreArray[0].score) {
         highScoreArray[0].score = playerWins;
         highScoreArray[0].name = playerName;
-        firebase.putToFireBase().then(response => addHighscore(response));
+        firebase.putToFireBase(highScoreArray).then(response => addHighscore(response));
     }
+    playerWins = 0;
 }

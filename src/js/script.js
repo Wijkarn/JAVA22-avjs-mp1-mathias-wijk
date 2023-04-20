@@ -40,24 +40,27 @@ playerArea.addEventListener("click", event => {
     let playerChoice;
 
     // checks what the player chose
-    if (event.target.id == "playerRock") {
-        playerChoice = "Rock";
-        rock.style.border = theChosenOne;
-        paper.style.border = notTheChosenOne;
-        scissors.style.border = notTheChosenOne;
+    switch (event.target.id) {
+        case "playerRock":
+            playerChoice = "Rock";
+            rock.style.border = theChosenOne;
+            paper.style.border = notTheChosenOne;
+            scissors.style.border = notTheChosenOne;
+            break;
+        case "playerPaper":
+            playerChoice = "Paper";
+            rock.style.border = notTheChosenOne;
+            paper.style.border = theChosenOne;
+            scissors.style.border = notTheChosenOne;
+            break;
+        case "Scissors":
+            playerChoice = "Scissors";
+            rock.style.border = notTheChosenOne;
+            paper.style.border = notTheChosenOne;
+            scissors.style.border = theChosenOne;
+            break;
     }
-    else if (event.target.id == "playerPaper") {
-        playerChoice = "Paper";
-        rock.style.border = notTheChosenOne;
-        paper.style.border = theChosenOne;
-        scissors.style.border = notTheChosenOne;
-    }
-    else {
-        playerChoice = "Scissors";
-        rock.style.border = notTheChosenOne;
-        paper.style.border = notTheChosenOne;
-        scissors.style.border = theChosenOne;
-    }
+
     // Round Tie
     if (playerChoice == pcChoice) {
 
@@ -118,25 +121,28 @@ function pcChoiceFunc() {
 
     let math = Math.floor(Math.random() * 3);
 
-    // changes from numbers to a word and the border of computer area so show what the computer chose
-    if (math == 0) {
-        rps = "Rock";
-        pcChoiceClass[0].style.border = theChosenOne;
-        pcChoiceClass[1].style.border = notTheChosenOne;
-        pcChoiceClass[2].style.border = notTheChosenOne;
+    // changes from numbers to a word and the border of computer area to show what the computer chose
+    switch (math) {
+        case 0:
+            rps = "Rock";
+            pcChoiceClass[0].style.border = theChosenOne;
+            pcChoiceClass[1].style.border = notTheChosenOne;
+            pcChoiceClass[2].style.border = notTheChosenOne;
+            break;
+        case 1:
+            rps = "Paper";
+            pcChoiceClass[0].style.border = notTheChosenOne;
+            pcChoiceClass[1].style.border = theChosenOne;
+            pcChoiceClass[2].style.border = notTheChosenOne;
+            break;
+        case 2:
+            rps = "Scissors";
+            pcChoiceClass[0].style.border = notTheChosenOne;
+            pcChoiceClass[1].style.border = notTheChosenOne;
+            pcChoiceClass[2].style.border = theChosenOne;
+            break;
     }
-    else if (math == 1) {
-        rps = "Paper";
-        pcChoiceClass[0].style.border = notTheChosenOne;
-        pcChoiceClass[1].style.border = theChosenOne;
-        pcChoiceClass[2].style.border = notTheChosenOne;
-    }
-    else {
-        rps = "Scissors";
-        pcChoiceClass[0].style.border = notTheChosenOne;
-        pcChoiceClass[1].style.border = notTheChosenOne;
-        pcChoiceClass[2].style.border = theChosenOne;
-    }
+    
     return rps;
 }
 
@@ -164,11 +170,14 @@ function checkIfNewPlayer() {
 
         if (name == playerName && score < playerWins) {
             highScoreArray[i].score = playerWins;
-            newPlayer = false;           
+            newPlayer = false;
             firebase.putToFireBase(highScoreArray).then(response => addHighscore(response));
             break;
         }
-        else if (name == playerName && score >= playerWins) newPlayer = false;
+        else if (name == playerName){
+            newPlayer = false;
+            break;
+        } 
     }
 
     // New player
@@ -177,5 +186,4 @@ function checkIfNewPlayer() {
         highScoreArray[0].name = playerName;
         firebase.putToFireBase(highScoreArray).then(response => addHighscore(response));
     }
-    playerWins = 0;
 }
